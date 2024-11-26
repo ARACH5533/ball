@@ -13,7 +13,6 @@ const ball = {
         radius: 20,
         velocityY: -10,
         velocityX: 10,
-        mass: 10,
         color: 'blue'
     };
 ```
@@ -26,8 +25,6 @@ const ball = {
 `ball.velocityY` 공의 수직(y)방향 속도
 
 `ball.velocityX` 공의 연직(x)방향 속도
-
-`ball.mass` 공의 무게
 
 `ball.color` 공의 색상
 
