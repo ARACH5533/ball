@@ -3,7 +3,7 @@
 
 오픈 소스로 누구나 코드 수정이 가능
 ***
-**배포** : [사이트](blue-ball-simulation.kro.kr)
+**배포** : [사이트](http://blue-ball-simulation.kro.kr)
 
 코드 내에서 아래 부분을 편집해서 여러 상황 구현이 가능함
 ```
