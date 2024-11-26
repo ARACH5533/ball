@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics Engine</title>
+  <style>
+    canvas {border: 1px solid black;}
+  </style>
+</head>
+<body>
+  <canvas id="simulation" width="800" height="600"></canvas>
+  <script>
+    const canvas = document.getElementById('simulation');
+    const ctx = canvas.getContext('2d');
+    /**중력 가속도*/
+    const gravity = 9.8;
+    /**시간 간격*/
+    const timeStep = 0.016;
+
+    /**공 속성*/
+    const ball = {
+        x: 400,
+        y: 300,
+        radius: 20,
+        velocityY: -10,
+        velocityX: 10,
+        mass: 10,
+        color: 'blue'
+    };
+
+    function update() {
+        //등가속도운동
+        ball.velocityY+=gravity*timeStep;
+        ball.y+=ball.velocityY;
+        //등속도운동
+        ball.x+=ball.velocityX;
+        //바닥과 충돌
+        if (ball.y+ball.radius>canvas.height) {
+            ball.y=canvas.height-ball.radius;
+            ball.velocityY *=-0.7;
+        }
+        //벽과 충돌
+        if (ball.x+ball.radius>canvas.width) {
+            ball.x=canvas.width-ball.radius;
+            ball.velocityX*=-0.7;
+        }
+        //벽과 충돌2
+        if (ball.x-ball.radius<0) {
+            ball.x=ball.radius;
+            ball.velocityX*=-0.7;
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        ctx.fillStyle = ball.color;
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function loop() {
+        update();
+        draw();
+        requestAnimationFrame(loop);
+    }
+    loop();
+  </script>
+</body>
+</html>
